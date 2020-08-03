@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Showfocus from "./Showfocus";
 
 function Home() {
   const [results, updateResults] = useState("");
@@ -23,6 +24,7 @@ function Home() {
       <img src={`https://image.tmdb.org/t/p/w500${results.poster_path}`} />
       <h2>{results.id}</h2>
       <p>{results.overview}</p>
+      <Showfocus results={results} />
     </div>
   );
 }
