@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
     updateUsername(usernameInput);
     console.log(`login name: ${username}`);
-    console.log(`login name: ${password}`);
+    console.log(`login password: ${password}`);
   };
 
   const onChangeUser = (e) => {
@@ -19,34 +19,43 @@ function Login() {
     updateUsername(e.target.value);
     console.log(username);
   };
+
   const onChangePassword = (e) => {
     e.preventDefault();
     updatePassword(e.target.value);
     console.log(password);
   };
 
+  const userNameInputField = (
+    <label>
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        autoComplete="off"
+        onChange={onChangeUser}
+      />
+    </label>
+  );
+
+  const passwordInputField = (
+    <label>
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        autoComplete="off"
+        onChange={onChangePassword}
+      />
+    </label>
+  );
+
   return (
     <div className="App">
       <div className="login-signup-container">
         <form className="loginForm">
-          <label>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              autoComplete="off"
-              onChange={onChangeUser}
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              autoComplete="off"
-              onChange={onChangePassword}
-            />
-          </label>
+          {userNameInputField}
+          {passwordInputField}
           <button onClick={handleLogin}>login</button>
         </form>
         <form className="signupForm">
@@ -59,24 +68,8 @@ function Login() {
               onChange={onChangeUser}
             />
           </label>
-          <label>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              autoComplete="off"
-              onChange={onChangeUser}
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              autoComplete="none"
-              onChange={onChangePassword}
-            />
-          </label>
+          {userNameInputField}
+          {passwordInputField}
           <label>
             <input
               type="password"

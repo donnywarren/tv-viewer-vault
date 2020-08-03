@@ -1,4 +1,4 @@
-# TV VIEWWER VAULT <!-- omit in toc -->
+# TV VIEWWR VAULT <!-- omit in toc -->
 
 ## Project Planning
 
