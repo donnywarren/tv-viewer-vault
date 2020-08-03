@@ -1,68 +1,151 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PROJECT 2 README <!-- omit in toc -->
 
-## Available Scripts
+## Project Planning
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+### Overview
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**TV VIEWER VAULT** is an app for users to research their favorite shows, discover new shows and see what's on today. Users will be able to create accounts and save their favorites for quick access. Additionally, they will be able to update their "vault" with new shows and delete others.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+### Wireframes
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Login/Signup](https://wireframe.cc/eKVI6f)
 
-### `npm run build`
+- Desktop Landing
+- Tablet Landing (flexed by percentage)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[User Home](https://wireframe.cc/pIVFuM)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- User Home
+- Tablet User Home (flexed by percentage)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Show Focus](https://wireframe.cc/bC3VNO)
 
-### `npm run eject`
+- Desktop Show Focus
+- Tablet Show Focus (flexed by percentage)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[Login/Signup](https://wireframe.cc/1svLwX)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Mobile login/signup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[User Home](https://wireframe.cc/2m6ugR)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Mobile user home
 
-## Learn More
+[Show Focus](https://wireframe.cc/4vHpNX)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Mobile show focus
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
 
-### Code Splitting
+### MVP
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**TV VAULT VIEWER** MVP will include a login/signup welcome page, basic user homepage with functionality to research, save and modify their personal "vault", and there should be a show/focus page to view complete details of a particular show.
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+#### Goals
 
-### Making a Progressive Web App
+1. emulate user validation
+2. successfully structure and save signup data
+3. retrieve and display search data
+4. full CRUD on "vault" data base for individual user
+5. create UI that is intuitive and stylish
+6. responsive accross all screen sizes
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+<br>
 
-### Advanced Configuration
+#### Libraries
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+|   Library    | Description                              |
+| :----------: | :--------------------------------------- |
+| React Router | navigate between pages                   |
+|    Axios     | api calls to 3rd party and app resources |
 
-### Deployment
+<br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+#### Data
 
-### `npm run build` fails to minify
+|         API         | Quality Docs? | Website                            | Sample Query                                                                                      |
+| :-----------------: | :-----------: | :--------------------------------- | :------------------------------------------------------------------------------------------------ |
+| TheMovieDataBaseAPI |      yes      | https://developers.themoviedb.org/ | https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=star%20trek |
+|     AirtableAPI     |      yes      | https://airtable.com/api           | https://api.airtable.com/v0/appY8EFNMSYGualIW/Table%201                                           |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<br>
+
+#### Component Hierarchy
+
+```
+tv-viewer-vault
+|__ public/
+      |__ favicon.ico
+      |__ index.html
+      |__ manifest.json
+|__ src/
+      |__ App.css
+      |__ App.js
+      |__ Index.css
+      |__ Login.js
+      |__ Userhome.js
+      |__ Showfocus.js
+|__ .env
+|__ .gitignore
+|__ assets
+|__ package.json
+|__ package-lock.json
+|__ README.md
+```
+
+<br>
+
+#### Component Breakdown
+
+|  Component   |    Type    | state | props | Description                                                  |
+| :----------: | :--------: | :---: | :---: | :----------------------------------------------------------- |
+| Login/Signup | functional |   y   |   n   | validate user interact with .env data object set login state |
+|  Navigation  | functional |   y   |   y   | small components reused to link routes and update state      |
+|   UserHome   | functional |   y   |   y   | will interact with data base and api                         |
+|  Show/Focus  | functional |   n   |   y   | full screen display of all data on one show                  |
+|    Footer    | functional |   n   |   n   | my contact information and link to 3rd party api             |
+
+<br>
+
+#### Component Estimates
+
+| Task                | Priority | Estimated Time | Time Invested | Actual Time |
+| ------------------- | :------: | :------------: | :-----------: | :---------: |
+| login/signup page   |    H     |     6 hrs      |     0 hrs     |    0 hrs    |
+| user home page      |    H     |     8 hrs      |     0 hrs     |    0 hrs    |
+| set up data base    |    H     |     2 hrs      |     0 hrs     |    0 hrs    |
+| create CRUD actions |    H     |     8 hrs      |     0 hrs     |    0 hrs    |
+| show/focus page     |    H     |     6 hrs      |     0 hrs     |    0 hrs    |
+| CSS styling         |    M     |     5 hrs      |     0 hrs     |    0 hrs    |
+| media queries       |    M     |     3 hrs      |     0 hrs     |    0 hrs    |
+| TOTAL               |          |     3 hrs      |     0 hrs     |    0 hrs    |
+
+<br>
+
+#### Helper Functions
+
+<br>
+
+### Post-MVP
+
+1. password/user encryption and safe storage
+2. video panel for locally viewing previews from third party websites
+3. social network links to share content
+4. calender page to display weekly viewing times
+5. notes field to save user comments on each item in vault
+
+<br>
+
+---
+
+## Project Delivery
+
+### Code Showcase
+
+### Code Issues & Resolutions
