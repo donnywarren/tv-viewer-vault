@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Showfocus from "./Showfocus";
 
 function Home() {
@@ -9,24 +10,28 @@ function Home() {
   useEffect(() => {
     const MakeApiCall = async () => {
       const res = await axios(
-        "https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=game%20of%20thrones"
+        "https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=star%20trek"
       );
-      updateResults(res.data.results[0]);
-      console.log(res.data.results[0]);
+      updateResults(res.data.results[11]);
+      console.log(res.data.results);
     };
     MakeApiCall();
     console.log(results);
   }, []);
-
-  return (
-    <div>
-      <h1>{results.name}</h1>
-      <img src={`https://image.tmdb.org/t/p/w500${results.poster_path}`} />
-      <h2>{results.id}</h2>
-      <p>{results.overview}</p>
-      <Showfocus results={results} />
-    </div>
-  );
+  if (results.name) {
+    return (
+      <div>
+        <Link to={`/showfocus/${results.id}`}>View Show</Link>
+        {/* <h1>{results.name}</h1>
+        <img src={`https://image.tmdb.org/t/p/w500${results.poster_path}`} />
+        <h2>{results.id}</h2>
+        <p>{results.overview}</p>
+        <Showfocus results={results} /> */}
+      </div>
+    );
+  } else {
+    return <h1>load</h1>;
+  }
 }
 
 export default Home;

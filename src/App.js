@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -13,9 +13,13 @@ function App() {
   return (
     <div className="App">
       <h1>TV VIEWER VAULT</h1>
-      <Login />
+      <Route exact path="/">
+        <Login />
+      </Route>
       <Home />
-      {/* <Showfocus /> */}
+      <Route path="/showfocus/:id">
+        <Showfocus />
+      </Route>
     </div>
   );
 }
