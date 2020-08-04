@@ -8,6 +8,7 @@ import Showfocus from "./Showfocus";
 function Home() {
   const [results, updateResults] = useState("");
   const params = useParams();
+  const data = results.results;
 
   useEffect(() => {
     const MakeApiCall = async () => {
@@ -16,31 +17,36 @@ function Home() {
       );
       updateResults(res.data);
       console.log(res.data.results);
-      console.log(params);
+      console.log(res.data);
+      // console.log(params);
     };
     MakeApiCall();
     console.log(results);
+    console.log(`test ${results}`);
   }, []);
 
-  console.log(params);
-  if (results.results) {
+  // console.log(params);
+  if (data) {
     return (
       <div>
         <h1>Home Path</h1>
         <h3>{`Hello ${params.userid}, ${params.test}`}</h3>
-        <p>{results.results[0].name}</p>
+        <p>{data[5].name}</p>
 
-        {/* {results.map((item) => {
-          <Link to={`/showfocus/${item.id}`}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-              alt={`${item.name} poster`}
-            />
-            <p>{item.first_air_date}</p>
-            <p>{item.name}</p>
-          </Link>;
+        {data.map((item) => {
           <p>{item.name}</p>;
-        })} */}
+          <div>
+            <Link to={`/showfocus/${item.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={`${item.name} poster`}
+              />
+              <p>{item.first_air_date}</p>
+              <p>{item.name}</p>
+            </Link>
+            ;<p>{item.name}</p>;
+          </div>;
+        })}
       </div>
     );
   } else {
