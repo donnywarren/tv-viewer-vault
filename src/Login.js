@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import { Link } from "react-router-dom";
 
-function Login() {
-  const [loggedin, updateLoggin] = useState(false);
-  const [usernameInput, updateUsernameInput] = useState("");
+import userInfo from "./secrets";
+import Signup from "./Signup";
+
+function Login(props) {
+  // const [loggedin, updateLoggedin] = useState(false);
+  // const [usernameInput, updateUsernameInput] = useState("");
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
+  const name = username;
+  // console.log(userInfo.don);
+  // console.log(username);
+  const handleLoggedin = () => {
+    props.updateLoggedin(true);
+    // console.log(prop)
+  };
 
-  const handleLogin = (e) => {
+  const handleFailedLogin = (e) => {
     e.preventDefault();
-    updateUsername(usernameInput);
-    console.log(`login name: ${username}`);
-    console.log(`login password: ${password}`);
+    updateUsername("");
+    updatePassword("");
+    window.location.reload();
+
+    console.log("yippy");
+    console.log(password);
   };
 
   const onChangeUser = (e) => {
@@ -26,39 +40,44 @@ function Login() {
     console.log(password);
   };
 
-  const userNameInputField = (
-    <label>
-      <input
-        type="text"
-        name="username"
-        placeholder="username"
-        autoComplete="off"
-        onChange={onChangeUser}
-      />
-    </label>
-  );
-
-  const passwordInputField = (
-    <label>
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        autoComplete="off"
-        onChange={onChangePassword}
-      />
-    </label>
-  );
-
   return (
     <div className="App">
       <div className="login-signup-container">
         <form className="loginForm">
-          {userNameInputField}
-          {passwordInputField}
-          <button onClick={handleLogin}>login</button>
+          <label>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              autoComplete="off"
+              onChange={onChangeUser}
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              autoComplete="off"
+              onChange={onChangePassword}
+            />
+          </label>
+          {password === userInfo[name] ? (
+            <Link
+              className="link-btn"
+              onClick={handleLoggedin}
+              to={`/home/${username}/-`}
+            >
+              login
+            </Link>
+          ) : (
+            <button className="link-btn" onClick={handleFailedLogin}>
+              login
+            </button>
+          )}
         </form>
-        <form className="signupForm">
+        <form className="signupForm" onSubmit={handleFailedLogin}>
+          <Signup />
           <label>
             <input
               type="email"
@@ -68,8 +87,24 @@ function Login() {
               onChange={onChangeUser}
             />
           </label>
-          {userNameInputField}
-          {passwordInputField}
+          <label>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              autoComplete="off"
+              onChange={onChangeUser}
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              autoComplete="off"
+              onChange={onChangePassword}
+            />
+          </label>
           <label>
             <input
               type="password"
@@ -79,7 +114,7 @@ function Login() {
               onChange={onChangePassword}
             />
           </label>
-          <button onClick={handleLogin}>signup</button>
+          <button>signup</button>
         </form>
       </div>
     </div>

@@ -2,31 +2,33 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Showfocus from "./Showfocus";
 
 function Home() {
   const [results, updateResults] = useState("");
+  const params = useParams();
 
   useEffect(() => {
     const MakeApiCall = async () => {
       const res = await axios(
         "https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=star%20trek"
       );
-      updateResults(res.data.results[11]);
+      updateResults(res.data.results[3]);
       console.log(res.data.results);
+      console.log(params);
     };
     MakeApiCall();
     console.log(results);
   }, []);
+
+  console.log(params);
   if (results.name) {
     return (
       <div>
+        <h1>Home Path</h1>
+        <h3>{`Hello ${params.userid}, ${params.test}`}</h3>
         <Link to={`/showfocus/${results.id}`}>View Show</Link>
-        {/* <h1>{results.name}</h1>
-        <img src={`https://image.tmdb.org/t/p/w500${results.poster_path}`} />
-        <h2>{results.id}</h2>
-        <p>{results.overview}</p>
-        <Showfocus results={results} /> */}
       </div>
     );
   } else {

@@ -27,3 +27,15 @@ form {
 img {
   height: 110px;
 }
+
+.link-btn {
+  outline: none;
+  color: #000000;
+  background-color: #dddddd;
+  padding: 5px 20px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+}

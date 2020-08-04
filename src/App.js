@@ -8,15 +8,18 @@ import Home from "./Home";
 import Showfocus from "./Showfocus";
 
 function App() {
-  const [loggedin, updateLoggin] = useState(false);
+  const [loggedin, updateLoggedin] = useState(false);
+  console.log(loggedin);
 
   return (
     <div className="App">
       <h1>TV VIEWER VAULT</h1>
       <Route exact path="/">
-        <Login />
+        <Login loggedin={loggedin} updateLoggedin={updateLoggedin} />
       </Route>
-      <Home />
+      <Route path="/home/:userid/:test">
+        <Home />
+      </Route>
       <Route path="/showfocus/:id">
         <Showfocus />
       </Route>
