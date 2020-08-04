@@ -14,7 +14,7 @@ function Home() {
       const res = await axios(
         "https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=star%20trek"
       );
-      updateResults(res.data.results[3]);
+      updateResults(res.data);
       console.log(res.data.results);
       console.log(params);
     };
@@ -23,16 +23,28 @@ function Home() {
   }, []);
 
   console.log(params);
-  if (results.name) {
+  if (results.results) {
     return (
       <div>
         <h1>Home Path</h1>
         <h3>{`Hello ${params.userid}, ${params.test}`}</h3>
-        <Link to={`/showfocus/${results.id}`}>View Show</Link>
+        <p>{results.results[0].name}</p>
+
+        {/* {results.map((item) => {
+          <Link to={`/showfocus/${item.id}`}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+              alt={`${item.name} poster`}
+            />
+            <p>{item.first_air_date}</p>
+            <p>{item.name}</p>
+          </Link>;
+          <p>{item.name}</p>;
+        })} */}
       </div>
     );
   } else {
-    return <h1>load</h1>;
+    return <h1>Loading...</h1>;
   }
 }
 
