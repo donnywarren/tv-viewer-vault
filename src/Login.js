@@ -66,7 +66,7 @@ function Login(props) {
             <Link
               className="link-btn"
               onClick={handleLoggedin}
-              to={`/home/${username}/-`}
+              to={`/search/${username}/-`}
             >
               login
             </Link>

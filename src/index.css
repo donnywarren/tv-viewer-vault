@@ -46,6 +46,12 @@ img {
   justify-content: space-evenly;
 }
 
+.show-card {
+  width: 200px;
+  height: 275px;
+  margin: 15px 5px;
+}
+
 .show-link {
   text-decoration: none;
   color: #000000;

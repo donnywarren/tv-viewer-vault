@@ -23,7 +23,8 @@ function Showfocus() {
       <h1>Show Focus Path</h1>
       <h2>{params.id}</h2>
       <h3>{show.name}</h3>
-      <Link to="/home/  /  ">home</Link>
+      <Link to="/search/  /  ">search</Link>
+      <Link to="/home">home</Link>
     </div>
   );
 }
