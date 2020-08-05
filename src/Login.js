@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 
@@ -8,9 +8,9 @@ import Signup from "./Signup";
 function Login(props) {
   // const [loggedin, updateLoggedin] = useState(false);
   // const [usernameInput, updateUsernameInput] = useState("");
-  const [username, updateUsername] = useState("");
+  // const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
-  const name = username;
+  const name = props.username;
   // console.log(userInfo.don);
   // console.log(username);
   const handleLoggedin = () => {
@@ -20,18 +20,15 @@ function Login(props) {
 
   const handleFailedLogin = (e) => {
     e.preventDefault();
-    updateUsername("");
+    props.updateUsername("");
     updatePassword("");
     window.location.reload();
-
-    console.log("yippy");
-    console.log(password);
   };
 
   const onChangeUser = (e) => {
     e.preventDefault();
-    updateUsername(e.target.value);
-    console.log(username);
+    props.updateUsername(e.target.value);
+    console.log(props.username);
   };
 
   const onChangePassword = (e) => {
@@ -63,11 +60,7 @@ function Login(props) {
             />
           </label>
           {password === userInfo[name] ? (
-            <Link
-              className="link-btn"
-              onClick={handleLoggedin}
-              to={`/search/${username}/-`}
-            >
+            <Link className="link-btn" onClick={handleLoggedin} to={`/home`}>
               login
             </Link>
           ) : (

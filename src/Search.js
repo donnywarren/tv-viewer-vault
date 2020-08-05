@@ -2,13 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import Showfocus from "./Showfocus";
 import Img from "./assets/img-not-available.png";
 
-function Search() {
+function Search(props) {
   const [results, updateResults] = useState("");
-  const params = useParams();
 
   useEffect(() => {
     const MakeApiCall = async () => {
@@ -29,12 +26,15 @@ function Search() {
     return (
       <div>
         <h1>Search Path</h1>
-        <Link to="/home">home</Link>
+        <Link to="/home" className="link-btn">
+          Your Vault
+        </Link>
+        <div className="search-controls-container"></div>
         <div className="show-container">
           {results.map((item) => {
             return (
               <div key={item.id} className="show-card">
-                <Link to={`/showfocus/${item.id}`} className="show-link">
+                <Link to={`/showfocus/${item.id}/x`} className="show-link">
                   <img
                     src={
                       item.poster_path

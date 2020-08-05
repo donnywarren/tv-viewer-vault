@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Route, Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
+import { Route } from "react-router-dom";
 
 import "./App.css";
 import Login from "./Login";
@@ -11,23 +10,33 @@ import Showfocus from "./Showfocus";
 function App() {
   const [loggedin, updateLoggedin] = useState(false);
   const [favorites, updateFavorites] = useState("");
-  console.log(loggedin);
-  console.log(favorites);
+  const [username, updateUsername] = useState("don");
+  // console.log(loggedin);
+  // console.log(favorites);
 
   return (
     <div className="App">
       <h1>TV VIEWER VAULT</h1>
       <Route exact path="/">
-        <Login loggedin={loggedin} updateLoggedin={updateLoggedin} />
+        <Login
+          loggedin={loggedin}
+          updateLoggedin={updateLoggedin}
+          username={username}
+          updateUsername={updateUsername}
+        />
       </Route>
       <Route path="/home">
-        <Home favorites={favorites} updateFavorites={updateFavorites} />
+        <Home
+          favorites={favorites}
+          updateFavorites={updateFavorites}
+          username={username}
+        />
       </Route>
-      <Route path="/search/:userid/:test">
-        <Search />
+      <Route path="/search">
+        <Search username={username} />
       </Route>
-      <Route path="/showfocus/:id">
-        <Showfocus />
+      <Route path="/showfocus/:showid/:airtableid">
+        <Showfocus username={username} />
       </Route>
     </div>
   );
