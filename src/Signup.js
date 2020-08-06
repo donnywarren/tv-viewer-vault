@@ -44,8 +44,8 @@ function Signup(props) {
       {
         fields: {
           user: `${props.username}`,
-          title: `Welcome ${props.username}!  Click "New Search" to begin.`,
-          image: "",
+          title: "Have Fun!",
+          image: "welcome",
           tvmv: "t",
         },
       },
@@ -56,8 +56,6 @@ function Signup(props) {
         },
       }
     );
-    // props.updateNote("");
-    // history.push("/home");
   };
 
   return (

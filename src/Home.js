@@ -35,6 +35,7 @@ function Home(props) {
   const handleClearSearch = () => {
     props.updateResults("");
   };
+
   console.log(vaultContent);
   if (vaultContent[0]) {
     const userName = props.username;
