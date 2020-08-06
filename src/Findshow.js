@@ -15,7 +15,6 @@ function Findshow(props) {
       );
       props.updateResults(res.data.results);
       console.log(res.data.results);
-      // console.log(res.data);
     };
     MakeApiCall();
     updateInputfield("");

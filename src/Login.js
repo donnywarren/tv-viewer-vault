@@ -8,7 +8,7 @@ function Login(props) {
   const [password, updatePassword] = useState("");
   const name = props.username;
   // console.log(userInfo.don);
-  // console.log(props.username);
+  console.log(props.username);
 
   const handleLoggedin = () => {
     props.updateLoggedin(true);
@@ -30,7 +30,6 @@ function Login(props) {
   const onChangePassword = (e) => {
     e.preventDefault();
     updatePassword(e.target.value);
-    console.log(password);
   };
 
   return (

@@ -36,9 +36,12 @@ function App() {
       </Route>
       <Route path="/home">
         <Home
+          loggedin={loggedin}
+          updateLoggedin={updateLoggedin}
           favorites={favorites}
           updateFavorites={updateFavorites}
           username={username}
+          updateUsername={updateUsername}
           tvmv={tvmv}
           updateTvmv={updateTvmv}
           note={note}
@@ -49,7 +52,10 @@ function App() {
       </Route>
       <Route path="/search">
         <Search
+          loggedin={loggedin}
+          updateLoggedin={updateLoggedin}
           username={username}
+          updateUsername={updateUsername}
           tvmv={tvmv}
           updateTvmv={updateTvmv}
           results={results}
@@ -58,7 +64,10 @@ function App() {
       </Route>
       <Route path="/showfocus/:showid/:airtableid/:tvmv">
         <Showfocus
+          loggedin={loggedin}
+          updateLoggedin={updateLoggedin}
           username={username}
+          updateUsername={updateUsername}
           tvmv={tvmv}
           updateTvmv={updateTvmv}
           note={note}

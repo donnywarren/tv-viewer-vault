@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Findmovie from "./Findmovie";
 import Findshow from "./Findshow";
 import Resultswindow from "./Resultswindow";
+import Logout from "./Logout";
 
 function Search(props) {
   const results = props.results;
@@ -16,6 +17,12 @@ function Search(props) {
       <Link to="/home" className="link-btn">
         Your Vault
       </Link>
+      <Logout
+        loggedin={props.loggedin}
+        updateLoggedin={props.updateLoggedin}
+        username={props.username}
+        updateUsername={props.updateUsername}
+      />
       <div className="search-controls-container">
         <Findmovie
           results={results}

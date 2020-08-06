@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Img from "./assets/img-not-available.png";
 import Welcome from "./assets/img-welcome.png";
+import Logout from "./Logout";
 
 function Home(props) {
   const [vaultContent, updateVaultContent] = useState([]);
@@ -36,7 +37,7 @@ function Home(props) {
     props.updateResults("");
   };
 
-  console.log(vaultContent);
+  // console.log(vaultContent);
   if (vaultContent[0]) {
     const userName = props.username;
     const capsUserName = userName.charAt(0).toUpperCase() + userName.slice(1);
@@ -53,6 +54,12 @@ function Home(props) {
         <Link onClick={clearNoteInfo} className="link-btn" to="/search">
           Back To Search Results
         </Link>
+        <Logout
+          loggedin={props.loggedin}
+          updateLoggedin={props.updateLoggedin}
+          username={props.username}
+          updateUsername={props.updateUsername}
+        />
         <div className="show-container">
           {vaultContent
             .slice(0)

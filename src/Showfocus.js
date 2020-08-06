@@ -5,6 +5,7 @@ import Img from "./assets/img-not-available.png";
 import Addtovault from "./Addtovault";
 import Remove from "./Remove";
 import Updaterecord from "./Updaterecord";
+import Logout from "./Logout";
 
 function Showfocus(props) {
   const params = useParams();
@@ -91,6 +92,12 @@ function Showfocus(props) {
       >
         New Search
       </Link>
+      <Logout
+        loggedin={props.loggedin}
+        updateLoggedin={props.updateLoggedin}
+        username={props.username}
+        updateUsername={props.updateUsername}
+      />
     </div>
   );
 }
