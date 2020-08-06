@@ -4,15 +4,13 @@ import axios from "axios";
 import Img from "./assets/img-not-available.png";
 import Addtovault from "./Addtovault";
 import Remove from "./Remove";
+import Updaterecord from "./Updaterecord";
 
 function Showfocus(props) {
   const params = useParams();
   const [show, updateShow] = useState({});
   const note = props.note;
   const updateNote = props.updateNote;
-
-  console.log(params.airtableid);
-  console.log(note);
 
   useEffect(() => {
     const showApiCall = async () => {
@@ -22,7 +20,6 @@ function Showfocus(props) {
           : `https://api.themoviedb.org/3/movie/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
       );
       updateShow(res.data);
-      console.log(res.data.id);
     };
     showApiCall();
   }, []);
@@ -31,6 +28,15 @@ function Showfocus(props) {
     e.preventDefault();
     updateNote(e.target.value);
   };
+
+  const clearNoteInfo = () => {
+    props.updateNote("");
+  };
+
+  const handleClearSearch = () => {
+    props.updateResults("");
+  };
+
   return (
     <div>
       <h1>Show Focus Path</h1>
@@ -56,21 +62,34 @@ function Showfocus(props) {
           onChange={handleNoteChange}
         ></textarea>
       </div>
-      <Addtovault
-        show={show}
-        updateShow={updateShow}
-        username={props.username}
-        note={note}
-        updateNote={updateNote}
-      />
+      {params.airtableid === "x" ? (
+        <Addtovault
+          show={show}
+          updateShow={updateShow}
+          username={props.username}
+          note={note}
+          updateNote={updateNote}
+        />
+      ) : null}
+      {params.airtableid !== "x" ? (
+        <Updaterecord airtableid={params.airtableid} note={note} />
+      ) : null}
+
       {params.airtableid !== "x" ? (
         <Remove airtableid={params.airtableid} />
       ) : null}
-      <Link className="link-btn" to="/search">
-        Search
-      </Link>
       <Link className="link-btn" to="/home">
         Your Vault
+      </Link>
+      <Link onClick={clearNoteInfo} className="link-btn" to="/search">
+        Back To Search Results
+      </Link>
+      <Link
+        onClick={(clearNoteInfo, handleClearSearch)}
+        className="link-btn"
+        to="/search"
+      >
+        New Search
       </Link>
     </div>
   );

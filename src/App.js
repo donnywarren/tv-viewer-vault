@@ -6,6 +6,7 @@ import Login from "./Login";
 import Home from "./Home";
 import Search from "./Search";
 import Showfocus from "./Showfocus";
+import Signup from "./Signup";
 
 function App() {
   const [loggedin, updateLoggedin] = useState(false);
@@ -13,8 +14,8 @@ function App() {
   const [username, updateUsername] = useState("don");
   const [tvmv, updateTvmv] = useState("");
   const [note, updateNote] = useState("");
-  // console.log(loggedin);
-  // console.log(favorites);
+  const [results, updateResults] = useState("");
+  console.log(loggedin);
 
   return (
     <div className="App">
@@ -26,6 +27,12 @@ function App() {
           username={username}
           updateUsername={updateUsername}
         />
+        {/* <Signup
+          loggedin={loggedin}
+          updateLoggedin={updateLoggedin}
+          username={username}
+          updateUsername={updateUsername}
+        /> */}
       </Route>
       <Route path="/home">
         <Home
@@ -36,10 +43,18 @@ function App() {
           updateTvmv={updateTvmv}
           note={note}
           updateNote={updateNote}
+          results={results}
+          updateResults={updateResults}
         />
       </Route>
       <Route path="/search">
-        <Search username={username} tvmv={tvmv} updateTvmv={updateTvmv} />
+        <Search
+          username={username}
+          tvmv={tvmv}
+          updateTvmv={updateTvmv}
+          results={results}
+          updateResults={updateResults}
+        />
       </Route>
       <Route path="/showfocus/:showid/:airtableid/:tvmv">
         <Showfocus
@@ -48,6 +63,8 @@ function App() {
           updateTvmv={updateTvmv}
           note={note}
           updateNote={updateNote}
+          results={results}
+          updateResults={updateResults}
         />
       </Route>
     </div>

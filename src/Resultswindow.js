@@ -1,16 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Img from "./assets/img-not-available.png";
-import Findmovie from "./Findmovie";
-import Findshow from "./Findshow";
 
 function Search(props) {
   const results = props.results;
 
   if (results) {
-    console.log(results[0].id);
     return (
       <div>
         <h1>Results:</h1>
@@ -51,5 +46,3 @@ function Search(props) {
 }
 
 export default Search;
-
-// item.first_air_date ? item.first_air_date : item.release_date

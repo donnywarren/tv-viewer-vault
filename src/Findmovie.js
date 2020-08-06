@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 function Findmovie(props) {
@@ -14,8 +14,6 @@ function Findmovie(props) {
         `https://api.themoviedb.org/3/search/movie?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US&query=${inputfield}&page=1&include_adult=false`
       );
       props.updateResults(res.data.results);
-      console.log(res.data.results);
-      // console.log(res.data);
     };
     MakeApiCall();
     updateInputfield("");
@@ -24,7 +22,6 @@ function Findmovie(props) {
   const onChangeMovie = (e) => {
     e.preventDefault();
     updateInputfield(e.target.value);
-    // console.log(props.username);
   };
 
   return (

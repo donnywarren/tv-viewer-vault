@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import "./App.css";
 import { Link } from "react-router-dom";
 
 import userInfo from "./secrets";
 import Signup from "./Signup";
 
 function Login(props) {
-  // const [loggedin, updateLoggedin] = useState(false);
-  // const [usernameInput, updateUsernameInput] = useState("");
-  // const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
   const name = props.username;
   // console.log(userInfo.don);
-  // console.log(username);
+  // console.log(props.username);
+
   const handleLoggedin = () => {
     props.updateLoggedin(true);
-    // console.log(prop)
   };
 
   const handleFailedLogin = (e) => {
@@ -61,54 +57,22 @@ function Login(props) {
           </label>
           {password === userInfo[name] ? (
             <Link className="link-btn" onClick={handleLoggedin} to={`/home`}>
-              login
+              Login
             </Link>
           ) : (
             <button className="link-btn" onClick={handleFailedLogin}>
-              login
+              Login
             </button>
           )}
         </form>
-        <form className="signupForm" onSubmit={handleFailedLogin}>
-          <Signup />
-          <label>
-            <input
-              type="email"
-              name="username"
-              placeholder="email"
-              autoComplete="off"
-              onChange={onChangeUser}
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              autoComplete="off"
-              onChange={onChangeUser}
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              autoComplete="off"
-              onChange={onChangePassword}
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              name="confirm-password"
-              placeholder="confirm password"
-              autoComplete="none"
-              onChange={onChangePassword}
-            />
-          </label>
-          <button>signup</button>
-        </form>
+        <Signup
+          password={password}
+          updatePassword={updatePassword}
+          username={props.username}
+          updateUsername={props.updateUsername}
+          loggedin={props.loggedin}
+          updateLoggedin={props.updateLoggedin}
+        />
       </div>
     </div>
   );
