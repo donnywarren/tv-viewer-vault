@@ -11,6 +11,8 @@ function App() {
   const [loggedin, updateLoggedin] = useState(false);
   const [favorites, updateFavorites] = useState("");
   const [username, updateUsername] = useState("don");
+  const [tvmv, updateTvmv] = useState("");
+  const [note, updateNote] = useState("");
   // console.log(loggedin);
   // console.log(favorites);
 
@@ -30,13 +32,23 @@ function App() {
           favorites={favorites}
           updateFavorites={updateFavorites}
           username={username}
+          tvmv={tvmv}
+          updateTvmv={updateTvmv}
+          note={note}
+          updateNote={updateNote}
         />
       </Route>
       <Route path="/search">
-        <Search username={username} />
+        <Search username={username} tvmv={tvmv} updateTvmv={updateTvmv} />
       </Route>
-      <Route path="/showfocus/:showid/:airtableid">
-        <Showfocus username={username} />
+      <Route path="/showfocus/:showid/:airtableid/:tvmv">
+        <Showfocus
+          username={username}
+          tvmv={tvmv}
+          updateTvmv={updateTvmv}
+          note={note}
+          updateNote={updateNote}
+        />
       </Route>
     </div>
   );

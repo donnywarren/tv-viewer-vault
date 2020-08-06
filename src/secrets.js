@@ -1,6 +1,6 @@
 const userInfo = {
-  don: "don",
-  tom: "topsecret2",
+  don: "top",
+  tom: "topsecret",
 };
 
 export default userInfo;

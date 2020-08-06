@@ -1,60 +1,49 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import Img from "./assets/img-not-available.png";
+import Findmovie from "./Findmovie";
+import Findshow from "./Findshow";
+import Resultswindow from "./Resultswindow";
 
 function Search(props) {
   const [results, updateResults] = useState("");
+  // const [tvmv, updateTvmv] = useState("");
+  const tvmv = props.tvmv;
+  const updateTvmv = props.updateTvmv;
 
   useEffect(() => {
-    const MakeApiCall = async () => {
-      const res = await axios(
-        "https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=friends"
-      );
-      updateResults(res.data.results);
-      console.log(res.data.results);
-      console.log(res.data);
-    };
-    MakeApiCall();
-    console.log(results);
-    console.log(`test ${results}`);
-    console.log(Img);
+    updateResults("");
   }, []);
 
-  if (results) {
-    return (
-      <div>
-        <h1>Search Path</h1>
-        <Link to="/home" className="link-btn">
-          Your Vault
-        </Link>
-        <div className="search-controls-container"></div>
-        <div className="show-container">
-          {results.map((item) => {
-            return (
-              <div key={item.id} className="show-card">
-                <Link to={`/showfocus/${item.id}/x`} className="show-link">
-                  <img
-                    src={
-                      item.poster_path
-                        ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
-                        : `${Img}`
-                    }
-                    alt={`${item.name} poster`}
-                  />
-                  <h3 className="show-link">{item.name}</h3>
-                  <p className="show-link">{`Release: ${item.first_air_date}`}</p>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
+  return (
+    <div>
+      <h1>Search Path</h1>
+      <Link to="/home" className="link-btn">
+        Your Vault
+      </Link>
+      <div className="search-controls-container">
+        <Findmovie
+          results={results}
+          updateResults={updateResults}
+          tvmv={tvmv}
+          updateTvmv={updateTvmv}
+        />
+        <Findshow
+          results={results}
+          updateResults={updateResults}
+          tvmv={tvmv}
+          updateTvmv={updateTvmv}
+        />
       </div>
-    );
-  } else {
-    return <h1>Loading...</h1>;
-  }
+      <div className="show-container">this is where the results go</div>
+      <Resultswindow
+        results={results}
+        updateResults={updateResults}
+        tvmv={tvmv}
+        updateTvmv={updateTvmv}
+      />
+    </div>
+  );
 }
 
 export default Search;

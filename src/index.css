@@ -24,6 +24,11 @@ form {
   align-items: center;
 }
 
+input {
+  width: 200px;
+  text-align: center;
+}
+
 img {
   height: 200px;
 }
@@ -62,4 +67,17 @@ button:hover {
 }
 .search-controls-container {
   border: 1px solid #000000;
+}
+
+.show-notes {
+  text-align: justify;
+}
+
+.show-notes p {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+textarea {
+  width: 100%;
 }

@@ -5,6 +5,7 @@ import Img from "./assets/img-not-available.png";
 
 function Home(props) {
   const [vaultContent, updateVaultContent] = useState([]);
+  // const updateNote = props.updateNote;
 
   useEffect(() => {
     const airtableCall = async () => {
@@ -23,6 +24,11 @@ function Home(props) {
     };
     airtableCall();
   }, []);
+
+  const handleNoteInfo = (e) => {
+    props.updateNote(e.target.title);
+  };
+
   if (vaultContent[0]) {
     console.log(vaultContent[0].id);
     const userName = props.username;
@@ -41,15 +47,16 @@ function Home(props) {
               return (
                 <div key={item.id} className="show-card">
                   <Link
-                    to={`/showfocus/${item.fields.imbd}/${item.id}`}
+                    to={`/showfocus/${item.fields.imbd}/${item.id}/${item.fields.tvmv}`}
                     className="show-link"
                   >
                     <img
+                      onClick={handleNoteInfo}
+                      title={item.fields.notes}
                       src={item.fields.image}
-                      alt={`${item.fields.title} poster`}
+                      alt={`${item.fields.notes} poster`}
                     />
                     <h3 className="show-link">{item.fields.title}</h3>
-                    <p className="show-link">{`Notes: ${item.fields.notes}`}</p>
                   </Link>
                 </div>
               );

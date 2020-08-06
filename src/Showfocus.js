@@ -8,23 +8,34 @@ import Remove from "./Remove";
 function Showfocus(props) {
   const params = useParams();
   const [show, updateShow] = useState({});
+  const note = props.note;
+  const updateNote = props.updateNote;
+
   console.log(params.airtableid);
+  console.log(note);
 
   useEffect(() => {
     const showApiCall = async () => {
       const res = await axios(
-        `https://api.themoviedb.org/3/tv/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
+        params.tvmv === "t"
+          ? `https://api.themoviedb.org/3/tv/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
+          : `https://api.themoviedb.org/3/movie/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
       );
       updateShow(res.data);
-      console.log(res.data.poster_path);
+      console.log(res.data.id);
     };
     showApiCall();
   }, []);
+
+  const handleNoteChange = (e) => {
+    e.preventDefault();
+    updateNote(e.target.value);
+  };
   return (
     <div>
       <h1>Show Focus Path</h1>
 
-      <h1>{show.name}</h1>
+      <h1>{show.name ? show.name : show.title}</h1>
       <img
         src={
           show.poster_path
@@ -33,12 +44,24 @@ function Showfocus(props) {
         }
         alt={`${show.name} poster`}
       />
-      <p>{show.first_air_date}</p>
+
+      <p>{show.first_air_date ? show.first_air_date : show.release_date}</p>
       <p>{show.overview}</p>
+      <div className="show-notes">
+        <p>Person notes:</p>
+        <textarea
+          name="notes"
+          wrap="soft"
+          defaultValue={`${note}`}
+          onChange={handleNoteChange}
+        ></textarea>
+      </div>
       <Addtovault
         show={show}
         updateShow={updateShow}
         username={props.username}
+        note={note}
+        updateNote={updateNote}
       />
       {params.airtableid !== "x" ? (
         <Remove airtableid={params.airtableid} />

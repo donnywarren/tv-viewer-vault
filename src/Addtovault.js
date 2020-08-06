@@ -6,7 +6,6 @@ import Showfocus from "./Showfocus";
 function Addtovault(props) {
   const params = useParams();
   const history = useHistory();
-  const user = { params };
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -17,8 +16,9 @@ function Addtovault(props) {
           user: `${props.username}`,
           imbd: `${params.showid}`,
           image: `https://image.tmdb.org/t/p/w500${props.show.poster_path}`,
-          title: `${props.show.name}`,
-          notes: "testing this",
+          title: `${props.show.name ? props.show.name : props.show.title}`,
+          notes: props.note,
+          tvmv: `${params.tvmv}`,
         },
       },
       {
@@ -28,13 +28,8 @@ function Addtovault(props) {
         },
       }
     );
+    props.updateNote("");
     history.push("/home");
-    // console.log(params.showid);
-    // console.log(props.show.name);
-    // console.log(props.show.poster_path);
-    // console.log(props.show.id);
-    // console.log(props.username);
-    // console.log(props.show);
   };
   return (
     <button className="link-btn" onClick={handleAdd}>
