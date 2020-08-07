@@ -11,12 +11,11 @@ function Home(props) {
   useEffect(() => {
     const airtableCall = async () => {
       const userData = await axios.get(
-        // `https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%201?filterByFormula=({user}="${props.username}")&view=Grid%20view`,
-        `https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%201?filterByFormula=({user}="don")&view=Grid%20view`,
+        `https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%201?filterByFormula=({user}="${props.username}")&view=Grid%20view`,
+
         {
           headers: {
-            // Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_KEY}`,
-            Authorization: `Bearer keyyOFSLiNizdxbov`,
+            Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_KEY}`,
             "Content-Type": "application/json",
           },
         }
