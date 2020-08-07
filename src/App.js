@@ -6,7 +6,8 @@ import Login from "./Login";
 import Home from "./Home";
 import Search from "./Search";
 import Showfocus from "./Showfocus";
-import Signup from "./Signup";
+import Footer from "./Footer";
+import TV from "./assets/tv-open-screen.png";
 
 function App() {
   const [loggedin, updateLoggedin] = useState(false);
@@ -15,11 +16,13 @@ function App() {
   const [tvmv, updateTvmv] = useState("");
   const [note, updateNote] = useState("");
   const [results, updateResults] = useState("");
-  console.log(loggedin);
 
   return (
     <div className="App">
-      <h1>TV VIEWER VAULT</h1>
+      <div className="hero-container">
+        <img className="hero-img" src={TV} alt="tv image" />
+        <h1 className="hero-h1">VIEWER VAULT</h1>
+      </div>
       <Route exact path="/">
         <Login
           loggedin={loggedin}
@@ -76,6 +79,7 @@ function App() {
           updateResults={updateResults}
         />
       </Route>
+      <Footer />
     </div>
   );
 }

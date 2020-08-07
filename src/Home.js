@@ -8,8 +8,6 @@ import Logout from "./Logout";
 function Home(props) {
   const [vaultContent, updateVaultContent] = useState([]);
 
-  console.log(props.username);
-
   useEffect(() => {
     const airtableCall = async () => {
       const userData = await axios.get(
@@ -44,7 +42,7 @@ function Home(props) {
     const userName = props.username;
     const capsUserName = userName.charAt(0).toUpperCase() + userName.slice(1);
     return (
-      <div>
+      <div className="home-page">
         <h1>{`${capsUserName}'s Vault`}</h1>
         <Link
           onClick={(clearNoteInfo, handleClearSearch)}

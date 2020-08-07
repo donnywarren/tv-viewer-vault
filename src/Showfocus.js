@@ -39,65 +39,69 @@ function Showfocus(props) {
   };
 
   return (
-    <div>
-      <h1>Show Focus Path</h1>
-
-      <h1>{show.name ? show.name : show.title}</h1>
-      <img
-        src={
-          show.poster_path
-            ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
-            : `${Img}`
-        }
-        alt={`${show.name} poster`}
-      />
-
-      <p>{show.first_air_date ? show.first_air_date : show.release_date}</p>
-      <p>{show.overview}</p>
-      <div className="show-notes">
-        <p>Person notes:</p>
-        <textarea
-          name="notes"
-          wrap="soft"
-          defaultValue={`${note}`}
-          onChange={handleNoteChange}
-        ></textarea>
-      </div>
-      {params.airtableid === "x" ? (
-        <Addtovault
-          show={show}
-          updateShow={updateShow}
-          username={props.username}
-          note={note}
-          updateNote={updateNote}
+    <div className="show-focus-page">
+      <div className="show-focus-container">
+        <h1 className="show-title">{show.name ? show.name : show.title}</h1>
+        <p className="release-date">
+          <strong>Released:</strong>{" "}
+          {show.first_air_date ? show.first_air_date : show.release_date}
+        </p>
+        <img
+          src={
+            show.poster_path
+              ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
+              : `${Img}`
+          }
+          alt={`${show.name} poster`}
         />
-      ) : null}
-      {params.airtableid !== "x" ? (
-        <Updaterecord airtableid={params.airtableid} note={note} />
-      ) : null}
+        <p className="show-overview">{show.overview}</p>
+        <div className="show-notes">
+          <p>Personal notes:</p>
+          <textarea
+            name="notes"
+            wrap="soft"
+            defaultValue={`${note}`}
+            onChange={handleNoteChange}
+          ></textarea>
+        </div>
+        <div className="on-focus-btn-container">
+          {params.airtableid === "x" ? (
+            <Addtovault
+              show={show}
+              updateShow={updateShow}
+              username={props.username}
+              note={note}
+              updateNote={updateNote}
+            />
+          ) : null}
+          {params.airtableid !== "x" ? (
+            <Updaterecord airtableid={params.airtableid} note={note} />
+          ) : null}
 
-      {params.airtableid !== "x" ? (
-        <Remove airtableid={params.airtableid} />
-      ) : null}
-      <Link className="link-btn" to="/home">
-        Your Vault
-      </Link>
-      <Link onClick={clearNoteInfo} className="link-btn" to="/search">
-        Back To Search Results
-      </Link>
-      <Link
-        onClick={(clearNoteInfo, handleClearSearch)}
-        className="link-btn"
-        to="/search"
-      >
-        New Search
-      </Link>
-      <Logout
-        loggedin={props.loggedin}
-        updateLoggedin={props.updateLoggedin}
-        username={props.username}
-        updateUsername={props.updateUsername}
-      />
+          {params.airtableid !== "x" ? (
+            <Remove airtableid={params.airtableid} />
+          ) : null}
+          <Link className="link-btn" to="/home">
+            Your Vault
+          </Link>
+          <Link onClick={clearNoteInfo} className="link-btn" to="/search">
+            Back To Search Results
+          </Link>
+          <Link
+            onClick={(clearNoteInfo, handleClearSearch)}
+            className="link-btn"
+            to="/search"
+          >
+            New Search
+          </Link>
+          <Logout
+            loggedin={props.loggedin}
+            updateLoggedin={props.updateLoggedin}
+            username={props.username}
+            updateUsername={props.updateUsername}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -13,16 +13,8 @@ function Search(props) {
 
   return (
     <div>
-      <h1>Search Path</h1>
-      <Link to="/home" className="link-btn">
-        Your Vault
-      </Link>
-      <Logout
-        loggedin={props.loggedin}
-        updateLoggedin={props.updateLoggedin}
-        username={props.username}
-        updateUsername={props.updateUsername}
-      />
+      <h1>Find A New Favorite</h1>
+
       <div className="search-controls-container">
         <Findmovie
           results={results}
@@ -37,6 +29,15 @@ function Search(props) {
           updateTvmv={updateTvmv}
         />
       </div>
+      <Link to="/home" className="link-btn">
+        Your Vault
+      </Link>
+      <Logout
+        loggedin={props.loggedin}
+        updateLoggedin={props.updateLoggedin}
+        username={props.username}
+        updateUsername={props.updateUsername}
+      />
       <Resultswindow
         results={results}
         updateResults={updateResults}

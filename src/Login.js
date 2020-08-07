@@ -31,9 +31,9 @@ function Login(props) {
   };
 
   return (
-    <div className="App">
+    <div className="login-page">
       <div className="login-signup-container">
-        <form className="loginForm">
+        <form className="login-form">
           <label>
             <input
               type="text"

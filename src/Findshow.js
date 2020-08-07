@@ -14,7 +14,6 @@ function Findshow(props) {
         `https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=${inputfield}`
       );
       props.updateResults(res.data.results);
-      console.log(res.data.results);
     };
     MakeApiCall();
     updateInputfield("");
