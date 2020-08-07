@@ -112,13 +112,13 @@ textarea {
 .hero-h1 {
   margin-left: -40px;
   transform: translateY(11px);
-  font-size: 56px;
+  font-size: 64px;
 }
+
 .show-focus-page {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  /* min-height: 50vh; */
 }
 
 .show-focus-container {
@@ -152,7 +152,6 @@ textarea {
 }
 #root {
   position: relative;
-  /* min-height: 120vh; */
 }
 footer {
   position: absolute;
@@ -177,5 +176,38 @@ footer {
 
   .login-form {
     margin: 0 0 20px 0;
+  }
+
+  footer {
+    padding: 5px 0;
+  }
+
+  input {
+    width: 300px;
+  }
+
+  .link-btn {
+    width: 310px;
+  }
+
+  .hero-container {
+    justify-content: center;
+  }
+
+  .hero-container {
+    background-color: green;
+  }
+
+  .hero-img {
+    height: 150px;
+  }
+
+  .hero-h1 {
+    font-size: 48px;
+    margin-left: -10px;
+  }
+
+  .show-focus-container {
+    width: 310px;
   }
 }
