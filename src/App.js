@@ -21,7 +21,9 @@ function App() {
     <div className="App">
       <div className="hero-container">
         <img className="hero-img" src={TV} alt="tv image" />
-        <h1 className="hero-h1">VIEWER VAULT</h1>
+        <div className="hero-h1-container">
+          <h1 className="hero-h1">VIEWER VAULT</h1>
+        </div>
       </div>
       <Route exact path="/">
         <Login
