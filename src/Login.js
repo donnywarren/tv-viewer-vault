@@ -7,8 +7,6 @@ import Signup from "./Signup";
 function Login(props) {
   const [password, updatePassword] = useState("");
   const name = props.username;
-  // console.log(userInfo.don);
-  console.log(props.username);
 
   const handleLoggedin = () => {
     props.updateLoggedin(true);
@@ -18,7 +16,7 @@ function Login(props) {
     e.preventDefault();
     props.updateUsername("");
     updatePassword("");
-    window.location.reload();
+    alert("Username or Password do not match");
   };
 
   const onChangeUser = (e) => {
@@ -42,6 +40,7 @@ function Login(props) {
               name="username"
               placeholder="username"
               autoComplete="off"
+              value={name}
               onChange={onChangeUser}
             />
           </label>
@@ -51,6 +50,7 @@ function Login(props) {
               name="password"
               placeholder="password"
               autoComplete="off"
+              value={password}
               onChange={onChangePassword}
             />
           </label>

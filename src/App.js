@@ -11,7 +11,7 @@ import Signup from "./Signup";
 function App() {
   const [loggedin, updateLoggedin] = useState(false);
   const [favorites, updateFavorites] = useState("");
-  const [username, updateUsername] = useState("don");
+  const [username, updateUsername] = useState("");
   const [tvmv, updateTvmv] = useState("");
   const [note, updateNote] = useState("");
   const [results, updateResults] = useState("");

@@ -6,11 +6,11 @@ import { Img } from "./assets/img-welcome.png";
 import userInfo from "./secrets";
 
 function Signup(props) {
-  // const [password, updatePassword] = useState("");
-  // const name = props.username;
-  // console.log(userInfo.don);
-  // console.log(username);
+  const [newUserName, updateNewUserName] = useState("");
+  const [newUserPassword, updateNewUserPassword] = useState("");
+  const [newConfirmPassword, updateConfirmPassword] = useState("");
 
+  // console.log(newUserName);
   const handleLoggedin = (e) => {
     e.preventDefault();
     props.updateLoggedin(true);
@@ -19,31 +19,36 @@ function Signup(props) {
 
   const handleFailedLogin = (e) => {
     e.preventDefault();
-    props.updateUsername("");
-    props.updatePassword("");
-    window.location.reload();
+    updateNewUserName("");
+    updateNewUserPassword("");
+    // window.location.reload();
   };
 
   const onChangeUser = (e) => {
     e.preventDefault();
-    props.updateUsername(e.target.value);
-    console.log(props.username);
+    updateNewUserName(e.target.value);
+    // console.log(newUserName);
   };
 
   const onChangePassword = (e) => {
     e.preventDefault();
-    props.updatePassword(e.target.value);
-    console.log(props.password);
+    updateNewUserPassword(e.target.value);
+  };
+
+  const onChangeConfirmPassword = (e) => {
+    e.preventDefault();
+    updateConfirmPassword(e.target.value);
   };
 
   const handleNewUser = async (e) => {
     e.preventDefault();
     props.updateLoggedin(true);
+    props.updateUsername(newUserName);
     await axios.post(
       "https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%201",
       {
         fields: {
-          user: `${props.username}`,
+          user: `${newUserName}`,
           title: "Have Fun!",
           image: "welcome",
           tvmv: "t",
@@ -75,6 +80,7 @@ function Signup(props) {
           name="username"
           placeholder="username"
           autoComplete="off"
+          value={newUserName}
           onChange={onChangeUser}
         />
       </label>
@@ -84,6 +90,7 @@ function Signup(props) {
           name="password"
           placeholder="password"
           autoComplete="off"
+          value={newUserPassword}
           onChange={onChangePassword}
         />
       </label>
@@ -93,9 +100,11 @@ function Signup(props) {
           name="confirm-password"
           placeholder="confirm password"
           autoComplete="none"
-          onChange={onChangePassword}
+          value={newConfirmPassword}
+          onChange={onChangeConfirmPassword}
         />
       </label>
+
       <div onClick={handleNewUser}>
         <Link to={`/home`} className="link-btn">
           Signup

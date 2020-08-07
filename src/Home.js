@@ -8,6 +8,8 @@ import Logout from "./Logout";
 function Home(props) {
   const [vaultContent, updateVaultContent] = useState([]);
 
+  console.log(props.username);
+
   useEffect(() => {
     const airtableCall = async () => {
       const userData = await axios.get(
