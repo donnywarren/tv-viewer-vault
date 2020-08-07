@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import userInfo from "./secrets";
-import Signup from "./Signup";
+// import Signup from "./Signup";
 
 function Login(props) {
   const [password, updatePassword] = useState("");
@@ -64,14 +64,14 @@ function Login(props) {
             </button>
           )}
         </form>
-        <Signup
+        {/* <Signup
           password={password}
           updatePassword={updatePassword}
           username={props.username}
           updateUsername={props.updateUsername}
           loggedin={props.loggedin}
           updateLoggedin={props.updateLoggedin}
-        />
+        /> */}
       </div>
     </div>
   );
