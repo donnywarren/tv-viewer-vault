@@ -38,7 +38,6 @@ function Home(props) {
     props.updateResults("");
   };
 
-  // console.log(vaultContent);
   if (vaultContent[0]) {
     const userName = props.username;
     const capsUserName = userName.charAt(0).toUpperCase() + userName.slice(1);

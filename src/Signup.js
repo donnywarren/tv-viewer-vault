@@ -1,47 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { Img } from "./assets/img-welcome.png";
-
-import userInfo from "./secrets";
+import { useHistory } from "react-router-dom";
 
 function Signup(props) {
   const [newUserName, updateNewUserName] = useState("");
   const [newUserPassword, updateNewUserPassword] = useState("");
   const [newConfirmPassword, updateConfirmPassword] = useState("");
-
-  // console.log(newUserName);
-  const handleLoggedin = (e) => {
-    e.preventDefault();
-    props.updateLoggedin(true);
-    console.log(props.loggedin);
-  };
+  const [email, updateEmail] = useState("");
+  const history = useHistory();
 
   const handleFailedLogin = (e) => {
-    e.preventDefault();
     updateNewUserName("");
     updateNewUserPassword("");
-    // window.location.reload();
+    alert("Password and Confirm Password do not match");
   };
 
-  const onChangeUser = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
-    updateNewUserName(e.target.value);
-    // console.log(newUserName);
+
+    console.log(e.target.value, e.target.attributes[1].value);
+    if (e.target.attributes[1].value === "username") {
+      updateNewUserName(e.target.value);
+      console.log(e.target.value);
+    } else if (e.target.attributes[1].value === "user-mail") {
+      updateEmail(e.target.value);
+      console.log(e.target.value);
+    } else if (e.target.attributes[1].value === "password") {
+      updateNewUserPassword(e.target.value);
+    } else {
+      updateConfirmPassword(e.target.value);
+    }
   };
 
-  const onChangePassword = (e) => {
-    e.preventDefault();
-    updateNewUserPassword(e.target.value);
+  const handleHistory = () => {
+    history.push("/home");
   };
 
-  const onChangeConfirmPassword = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    updateConfirmPassword(e.target.value);
+
+    if (!email.match(/[@]/) || !email.match(/[.]/)) {
+      updateEmail("");
+      alert("PLEASE ENTER A VALID EMAIL");
+      return;
+    }
+
+    newUserPassword !== newConfirmPassword || newUserPassword === ""
+      ? handleFailedLogin()
+      : handleNewUser();
   };
 
   const handleNewUser = async (e) => {
-    e.preventDefault();
     props.updateLoggedin(true);
     props.updateUsername(newUserName);
     await axios.post(
@@ -61,19 +70,12 @@ function Signup(props) {
         },
       }
     );
+
+    handleHistory();
   };
 
   return (
-    <form className="signupForm" onSubmit={handleFailedLogin}>
-      <label>
-        {/* <input
-          type="email"
-          name="username"
-          placeholder="email"
-          autoComplete="off"
-          onChange={onChangeUser}
-        /> */}
-      </label>
+    <form className="signupForm" onSubmit={handleSubmit}>
       <label>
         <input
           type="text"
@@ -81,7 +83,17 @@ function Signup(props) {
           placeholder="username"
           autoComplete="off"
           value={newUserName}
-          onChange={onChangeUser}
+          onChange={handleChange}
+        />
+      </label>
+      <label>
+        <input
+          type="email"
+          name="user-mail"
+          placeholder="email"
+          autoComplete="off"
+          value={email}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -90,8 +102,12 @@ function Signup(props) {
           name="password"
           placeholder="password"
           autoComplete="off"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}"
+          title="Must contain at least 7 characters, one number, one
+          lower and one upper case letter and one special character
+          (!@#$%^&*)."
           value={newUserPassword}
-          onChange={onChangePassword}
+          onChange={handleChange}
         />
       </label>
       <label>
@@ -101,15 +117,12 @@ function Signup(props) {
           placeholder="confirm password"
           autoComplete="none"
           value={newConfirmPassword}
-          onChange={onChangeConfirmPassword}
+          onChange={handleChange}
         />
       </label>
-
-      <div onClick={handleNewUser}>
-        <Link to={`/home`} className="link-btn">
-          Signup
-        </Link>
-      </div>
+      <button className="link-btn" type="submit">
+        Signup
+      </button>
     </form>
   );
 }
