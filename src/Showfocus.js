@@ -17,8 +17,8 @@ function Showfocus(props) {
     const showApiCall = async () => {
       const res = await axios(
         params.tvmv === "t"
-          ? `https://api.themoviedb.org/3/tv/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
-          : `https://api.themoviedb.org/3/movie/${params.showid}?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US`
+          ? `https://api.themoviedb.org/3/tv/${params.showid}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+          : `https://api.themoviedb.org/3/movie/${params.showid}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
       );
       updateShow(res.data);
     };

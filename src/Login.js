@@ -1,28 +1,51 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-import userInfo from "./secrets";
 import Signup from "./Signup";
 
 function Login(props) {
   const [password, updatePassword] = useState("");
+  const history = useHistory();
   const name = props.username;
 
   const handleLoggedin = () => {
     props.updateLoggedin(true);
+    history.push("/home");
   };
 
-  const handleFailedLogin = (e) => {
-    e.preventDefault();
+  const handleFailedLogin = () => {
     props.updateUsername("");
     updatePassword("");
-    alert("Username or Password do not match");
+    alert("username or password do not match account");
+  };
+
+  const handleCredentials = async (e) => {
+    e.preventDefault();
+    const userCredentials = await axios.get(
+      `https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%202?filterByFormula=({user}="${props.username}")&view=Grid%20view`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (userCredentials.data.records[0]) {
+      const savedPassword = userCredentials.data.records[0].fields.password;
+      console.log(savedPassword);
+
+      password === savedPassword ? handleLoggedin() : handleFailedLogin();
+    } else {
+      handleFailedLogin();
+    }
   };
 
   const onChangeUser = (e) => {
     e.preventDefault();
     props.updateUsername(e.target.value);
-    console.log(props.username);
   };
 
   const onChangePassword = (e) => {
@@ -54,15 +77,9 @@ function Login(props) {
               onChange={onChangePassword}
             />
           </label>
-          {password === userInfo[name] ? (
-            <Link className="link-btn" onClick={handleLoggedin} to={`/home`}>
-              Login
-            </Link>
-          ) : (
-            <button className="link-btn" onClick={handleFailedLogin}>
-              Login
-            </button>
-          )}
+          <button className="link-btn" onClick={handleCredentials}>
+            Login
+          </button>
         </form>
         <Signup
           password={password}

@@ -32,12 +32,6 @@ function App() {
           username={username}
           updateUsername={updateUsername}
         />
-        {/* <Signup
-          loggedin={loggedin}
-          updateLoggedin={updateLoggedin}
-          username={username}
-          updateUsername={updateUsername}
-        /> */}
       </Route>
       <Route path="/home">
         <Home

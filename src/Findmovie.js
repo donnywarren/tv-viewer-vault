@@ -10,8 +10,9 @@ function Findmovie(props) {
     props.updateTvmv("m");
 
     const MakeApiCall = async () => {
+      console.log(process.env.REACT_APP_TMDB_API_KEY);
       const res = await axios(
-        `https://api.themoviedb.org/3/search/movie?api_key=8d021868bbab84ae4f9d16fdc0645e0c&language=en-US&query=${inputfield}&page=1&include_adult=false`
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&query=${inputfield}&page=1&include_adult=false`
       );
       props.updateResults(res.data.results);
     };

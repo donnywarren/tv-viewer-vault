@@ -11,7 +11,7 @@ function Findshow(props) {
 
     const MakeApiCall = async () => {
       const res = await axios(
-        `https://api.themoviedb.org/3/search/tv?api_key=8d021868bbab84ae4f9d16fdc0645e0c&query=${inputfield}`
+        `https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_TMDB_API_KEY}&query=${inputfield}`
       );
       props.updateResults(res.data.results);
     };
