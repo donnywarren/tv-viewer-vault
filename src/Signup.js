@@ -18,13 +18,13 @@ function Signup(props) {
   const handleChange = (e) => {
     e.preventDefault();
 
-    console.log(e.target.value, e.target.attributes[1].value);
+    // console.log(e.target.value, e.target.attributes[1].value);
     if (e.target.attributes[1].value === "username") {
       updateNewUserName(e.target.value);
-      console.log(e.target.value);
+      // console.log(e.target.value);
     } else if (e.target.attributes[1].value === "user-mail") {
       updateEmail(e.target.value);
-      console.log(e.target.value);
+      // console.log(e.target.value);
     } else if (e.target.attributes[1].value === "password") {
       updateNewUserPassword(e.target.value);
     } else {

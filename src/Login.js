@@ -6,8 +6,8 @@ import Signup from "./Signup";
 
 function Login(props) {
   const [password, updatePassword] = useState("");
+  const [tempusername, updateTempusername] = useState("");
   const history = useHistory();
-  const name = props.username;
 
   const handleLoggedin = () => {
     props.updateLoggedin(true);
@@ -16,6 +16,7 @@ function Login(props) {
 
   const handleFailedLogin = () => {
     props.updateUsername("");
+    updateTempusername("");
     updatePassword("");
     alert("username or password do not match account");
   };
@@ -35,7 +36,6 @@ function Login(props) {
 
     if (userCredentials.data.records[0]) {
       const savedPassword = userCredentials.data.records[0].fields.password;
-      console.log(savedPassword);
 
       password === savedPassword ? handleLoggedin() : handleFailedLogin();
     } else {
@@ -43,14 +43,14 @@ function Login(props) {
     }
   };
 
-  const onChangeUser = (e) => {
+  const onChangeHandler = (e) => {
     e.preventDefault();
-    props.updateUsername(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    e.preventDefault();
-    updatePassword(e.target.value);
+    if (e.target.attributes[1].value === "username") {
+      props.updateUsername(e.target.value);
+      updateTempusername(e.target.value);
+    } else {
+      updatePassword(e.target.value);
+    }
   };
 
   return (
@@ -63,8 +63,8 @@ function Login(props) {
               name="username"
               placeholder="username"
               autoComplete="off"
-              value={name}
-              onChange={onChangeUser}
+              value={tempusername}
+              onChange={onChangeHandler}
             />
           </label>
           <label>
@@ -74,7 +74,7 @@ function Login(props) {
               placeholder="password"
               autoComplete="off"
               value={password}
-              onChange={onChangePassword}
+              onChange={onChangeHandler}
             />
           </label>
           <button className="link-btn" onClick={handleCredentials}>
