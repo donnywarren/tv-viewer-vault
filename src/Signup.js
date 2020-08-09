@@ -12,19 +12,17 @@ function Signup(props) {
   const handleFailedLogin = (e) => {
     updateNewUserName("");
     updateNewUserPassword("");
+    updateConfirmPassword("");
     alert("Password and Confirm Password do not match");
   };
 
   const handleChange = (e) => {
     e.preventDefault();
 
-    // console.log(e.target.value, e.target.attributes[1].value);
     if (e.target.attributes[1].value === "username") {
       updateNewUserName(e.target.value);
-      // console.log(e.target.value);
     } else if (e.target.attributes[1].value === "user-mail") {
       updateEmail(e.target.value);
-      // console.log(e.target.value);
     } else if (e.target.attributes[1].value === "password") {
       updateNewUserPassword(e.target.value);
     } else {
@@ -71,6 +69,22 @@ function Signup(props) {
       }
     );
 
+    await axios.post(
+      "https://api.airtable.com/v0/appsWFIfSTp1odUII/Table%202",
+      {
+        fields: {
+          user: `${newUserName}`,
+          password: `${newUserPassword}`,
+          email: `${email}`,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     handleHistory();
   };
 
