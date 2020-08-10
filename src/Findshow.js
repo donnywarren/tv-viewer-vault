@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import TVicon from "./assets/tv-icon-bw.png";
 
 function Findshow(props) {
   const [inputfield, updateInputfield] = useState("");
@@ -27,16 +28,21 @@ function Findshow(props) {
   return (
     <div>
       <form>
-        <label>
-          <input
-            type="text"
-            name="showtitle"
-            placeholder="TV Show Title (partials okay)"
-            autoComplete="off"
-            value={inputfield}
-            onChange={onChangeTV}
-          />
-        </label>
+        <div className="tv-input-container">
+          <img className="tv-icon" src={TVicon} alt="tv" />
+          <label>
+            <input
+              className="tv-input"
+              type="text"
+              name="showtitle"
+              // placeholder="TV Show Title (partials okay)"
+              autoComplete="off"
+              value={inputfield}
+              onChange={onChangeTV}
+            />
+          </label>
+        </div>
+
         <button className="link-btn" onClick={handleTVClick}>
           Find Show
         </button>

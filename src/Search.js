@@ -16,13 +16,13 @@ function Search(props) {
       <h1>Find A New Favorite</h1>
 
       <div className="search-controls-container">
-        <Findmovie
+        <Findshow
           results={results}
           updateResults={updateResults}
           tvmv={tvmv}
           updateTvmv={updateTvmv}
         />
-        <Findshow
+        <Findmovie
           results={results}
           updateResults={updateResults}
           tvmv={tvmv}

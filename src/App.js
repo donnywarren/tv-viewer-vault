@@ -8,6 +8,7 @@ import Search from "./Search";
 import Showfocus from "./Showfocus";
 import Footer from "./Footer";
 import TV from "./assets/tv-open-screen.png";
+import MV from "./assets/hollywood-icon-2.png";
 
 function App() {
   const [loggedin, updateLoggedin] = useState(false);
@@ -20,10 +21,11 @@ function App() {
   return (
     <div className="App">
       <div className="hero-container">
-        <img className="hero-img" src={TV} alt="tv image" />
+        <img className="hero-img" src={TV} alt="tv" />
         <div className="hero-h1-container">
           <h1 className="hero-h1">VIEWER VAULT</h1>
         </div>
+        <img className="hero-img" src={MV} alt="hollywood" />
       </div>
       <Route exact path="/">
         <Login
